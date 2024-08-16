@@ -12,5 +12,5 @@ public interface EmployeeDao {
     Optional<Employee> findByEmployeeId(int employeeId);
     List<Employee> findAll();
     Employee update(Employee employee);
-    void delete(int employeeId);
+    void delete(Employee employee);
 }

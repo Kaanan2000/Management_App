@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/management")
+@RequestMapping("/api/manager")
 @PreAuthorize("hasRole('MANAGER')")
 public class ManagementController {
 
@@ -20,7 +20,7 @@ public class ManagementController {
     private EmployeeServiceImpl employeeService;
 
     //Get an Employee By ID
-    @GetMapping("/{id}")
+    @GetMapping("/view/{id}")
     @PreAuthorize("hasAuthority('admin:read')")
     public ResponseEntity<Employee> getEmployeeById(@PathVariable("id") int id) {
         try {
@@ -33,7 +33,7 @@ public class ManagementController {
 
 
     //Get all Employees
-    @GetMapping
+    @GetMapping("/view")
     @PreAuthorize("hasAuthority('admin:read')")
     public ResponseEntity<List<Employee>> getAllEmployees() {
         List<Employee> employees = employeeService.findAllEmployee();
@@ -42,11 +42,11 @@ public class ManagementController {
 
 
     //Save a new Employee
-    @PostMapping
+    @PostMapping("/add")
     @PreAuthorize("hasAuthority('admin:create')")
     public ResponseEntity<Employee> saveEmployee(@RequestBody Employee employee) {
         Employee savedEmployee = employeeService.saveEmployee(employee);
-        return new ResponseEntity<>(savedEmployee, HttpStatus.CREATED);
+        return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
 }

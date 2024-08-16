@@ -23,7 +23,7 @@ public class UserController {
 
 
     //Get an Employee By ID
-    @GetMapping("/{id}")
+    @GetMapping("/view/{id}")
     @PreAuthorize("hasAuthority('admin:read')")
     public ResponseEntity<Employee> getEmployeeById(@PathVariable("id") int id) {
         try {
@@ -36,7 +36,7 @@ public class UserController {
 
 
     //Get all Employees
-    @GetMapping
+    @GetMapping("/view")
     @PreAuthorize("hasAuthority('admin:read')")
     public ResponseEntity<List<Employee>> getAllEmployees() {
         List<Employee> employees = employeeService.findAllEmployee();
@@ -44,3 +44,4 @@ public class UserController {
     }
 
 }
+

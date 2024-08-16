@@ -20,7 +20,7 @@ public class AdminController {
 
 
     //Get an Employee By ID
-    @GetMapping("/{id}")
+    @GetMapping("/view/{id}")
     @PreAuthorize("hasAuthority('admin:read')")
     public ResponseEntity<Employee> getEmployeeById(@PathVariable("id") int id) {
         try {
@@ -33,7 +33,7 @@ public class AdminController {
 
 
     //Get all Employees
-    @GetMapping
+    @GetMapping("/view")
     @PreAuthorize("hasAuthority('admin:read')")
     public ResponseEntity<List<Employee>> getAllEmployees() {
         List<Employee> employees = employeeService.findAllEmployee();
@@ -42,15 +42,15 @@ public class AdminController {
 
 
     //Save a new Employee
-    @PostMapping
+    @PostMapping("/add")
     @PreAuthorize("hasAuthority('admin:create')")
     public ResponseEntity<Employee> saveEmployee(@RequestBody Employee employee) {
         Employee savedEmployee = employeeService.saveEmployee(employee);
-        return new ResponseEntity<>(savedEmployee, HttpStatus.CREATED);
+        return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
 
-    @PutMapping("/{id}")
+    @PutMapping("/update/{id}")
     @PreAuthorize("hasAuthority('admin:update')")
     public ResponseEntity<Employee> updateEmployee(@PathVariable("id") int id, @RequestBody Employee employee) {
         try {
@@ -63,7 +63,7 @@ public class AdminController {
     }
 
 
-    @DeleteMapping("/{id}")
+    @DeleteMapping("/delete/{id}")
     @PreAuthorize("hasAuthority('admin:delete')")
     public ResponseEntity<Void> deleteEmployee(@PathVariable("id") int id) {
         try {

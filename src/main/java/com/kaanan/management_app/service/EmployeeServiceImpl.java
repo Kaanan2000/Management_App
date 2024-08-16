@@ -16,8 +16,7 @@ public class EmployeeServiceImpl implements EmployeeService{
 
     @Override
     public Employee saveEmployee(Employee employee) {
-        employeeDao.save(employee);
-        return employee;
+        return employeeDao.save(employee);
     }
 
     @Override
@@ -41,6 +40,7 @@ public class EmployeeServiceImpl implements EmployeeService{
 
     @Override
     public void deleteEmployee(int id) {
-        employeeDao.delete(id);
+        Employee employee = employeeDao.findByEmployeeId(id).orElseThrow(() -> new RuntimeException("Employee Not Found for id: " + id));
+        employeeDao.delete(employee);
     }
 }
