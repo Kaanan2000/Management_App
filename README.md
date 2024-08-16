@@ -1,6 +1,6 @@
 ---
 
-# Management App
+# Employee Management App
 
 ## Overview
 
