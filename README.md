@@ -1,3 +1,5 @@
+---
+
 # Management App
 
 ## Overview
@@ -100,8 +102,6 @@ Feel free to contribute by submitting issues or pull requests. Please adhere to 
 
 ## Contact
 
-For questions or feedback, please contact [your-email@example.com].
+For questions or feedback, please contact [kkaanapriyan@gmail.com].
 
 ---
-
-Feel free to modify the sections according to your project specifics or personal preferences.
