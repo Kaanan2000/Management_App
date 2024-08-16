@@ -68,7 +68,8 @@ public class EmployeeDaoImpl implements EmployeeDao {
 
     //Delete an Employee By ID
     @Override
-    public void delete(Employee employee) {
+    public void delete(int employeeId) {
+        Employee employee = new Employee();
         String sql = "DELETE FROM employee WHERE employee_id = ?";
         jdbcTemplate.update(sql, employee.getEmployeeId());
     }

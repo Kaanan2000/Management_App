@@ -27,7 +27,7 @@ public class SecurityConfiguration {
         httpSecurity
                 .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(req ->
-                        req.requestMatchers("/api/auth/*")
+                        req.requestMatchers("/api/auth/**")
                                 .permitAll()
                                 .requestMatchers("/api/management/**").hasAnyRole(ADMIN.name(), MANAGER.name(), USER.name())
                                 .requestMatchers(GET,"/api/management/**").hasAnyAuthority(ADMIN.name(), MANAGER.name(), USER.name())

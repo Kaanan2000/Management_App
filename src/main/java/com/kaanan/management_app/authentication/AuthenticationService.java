@@ -20,11 +20,12 @@ public class AuthenticationService {
     private final AuthenticationManager authenticationManager;
 
     public AuthenticationResponse register(RegisterRequest request) {
+
         var user = App_User.builder()
                 .firstName(request.getFirstName())
                 .lastName(request.getLastName())
                 .email(request.getEmail())
-                .password(passwordEncoder.encode(request.getPassword()))
+                .userPassword(passwordEncoder.encode(request.getPassword()))
                 .role(request.getRole())
                 .build();
         userDao.save(user);

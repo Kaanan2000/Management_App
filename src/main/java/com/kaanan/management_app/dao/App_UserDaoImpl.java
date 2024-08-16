@@ -1,6 +1,7 @@
 package com.kaanan.management_app.dao;
 
 import com.kaanan.management_app.model.App_User;
+import com.kaanan.management_app.model.Role;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -26,7 +27,8 @@ public class App_UserDaoImpl implements App_UserDao{
             user.setFirstName(rs.getString("first_name"));
             user.setLastName(rs.getString("last_name"));
             user.setEmail(rs.getString("email"));
-            user.setPassword(rs.getString("password"));
+            user.setUserPassword(rs.getString("password"));
+            user.setRole(Role.valueOf(rs.getString("role")));
             return user;
         }
     }
@@ -35,9 +37,16 @@ public class App_UserDaoImpl implements App_UserDao{
     @Override
     public App_User save(App_User user) {
         String sql = "INSERT INTO app_user(first_name, last_name, email, password, role) VALUES(?,?,?,?,?)";
-        jdbcTemplate.update(sql, user.getFirstName(), user.getLastName(), user.getEmail(), user.getPassword(), user.getPassword());
+        jdbcTemplate.update(sql,
+                user.getFirstName(),
+                user.getLastName(),
+                user.getEmail(),
+                user.getUserPassword(),
+                user.getRole().name()
+        );
         return user;
     }
+    
 
     //Find User by Email
     @Override

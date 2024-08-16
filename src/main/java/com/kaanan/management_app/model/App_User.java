@@ -1,5 +1,7 @@
 package com.kaanan.management_app.model;
 
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -16,11 +18,21 @@ import java.util.Collection;
 @NoArgsConstructor
 @AllArgsConstructor
 public class App_User implements UserDetails {
+
     private Integer userId;
+
+    @NotBlank(message = "First name is required")
     private String firstName;
+
     private String lastName;
+
+    @NotBlank(message = "Email is required")
     private String email;
-    private String password;
+
+    @NotBlank(message = "Password is required")
+    private String userPassword;
+
+    @NotNull(message = "Role is required")
     private Role role;
 
     @Override
@@ -30,7 +42,7 @@ public class App_User implements UserDetails {
 
     @Override
     public String getPassword() {
-        return password;
+        return userPassword;
     }
 
     @Override
@@ -57,5 +69,4 @@ public class App_User implements UserDetails {
     public boolean isEnabled() {
         return true;
     }
-
 }
